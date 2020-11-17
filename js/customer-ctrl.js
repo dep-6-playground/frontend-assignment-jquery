@@ -48,10 +48,10 @@ var MAX_PAGES = 3;
 init();
 
 function init() {
-    txtId = document.getElementById('txt-id');
-    txtName = document.getElementById('txt-name');
-    txtAddress = document.getElementById('txt-address');
-    tblCustomers = document.getElementById('tbl-customers');
+    txtId = $('#txt-id');
+    txtName = $('#txt-name');
+    txtAddress = $('#txt-address');
+    tblCustomers =$('#tbl-customers');
 
     txtId.focus();
 }
@@ -62,9 +62,9 @@ function init() {
 
 document.getElementById('btn-save').addEventListener('click', handleSave);
 document.addEventListener('click', handleClickEventDelegation);
-txtId.addEventListener('input', handleInput)
-txtName.addEventListener('input', handleInput)
-txtAddress.addEventListener('input', handleInput)
+// txtId.addEventListener('input', handleInput);
+//txtName.addEventListener('input', handleInput);
+//txtAddress.addEventListener('input', handleInput);
 
 /*===============================================================================
  * Functions
@@ -114,21 +114,21 @@ function handleSave(event) {
      */
 
     /* Let's check whether we want to save or update */
-    if (!selectedCustomer) {
+  /*  if (!selectedCustomer) {
 
-        /* There is no selected customer which means we need to save */
+        /!* There is no selected customer which means we need to save *!/
         customers.push({
             id: txtId.value,
             name: txtName.value,
             address: txtAddress.value
         });
 
-        /* Let's initialize pagination */
+        /!* Let's initialize pagination *!/
         initPagination();
         renderPage(Math.ceil(customers.length / pageSize));
         showOrHideTFoot();
 
-        /* Let's ready for next entry */
+        /!* Let's ready for next entry *!/
         txtId.value = '';
         txtName.value = '';
         txtAddress.value = '';
@@ -136,13 +136,13 @@ function handleSave(event) {
 
     } else {
 
-        /* There is a selected customer which means we need to update */
+        /!* There is a selected customer which means we need to update *!/
         selectedCustomer.name = txtName.value;
         selectedCustomer.address = txtAddress.value;
         selectedRow.cells[1].innerText = txtName.value;
         selectedRow.cells[2].innerText = txtAddress.value;
     }
-
+*/
 }
 
 function initPagination() {
@@ -373,40 +373,40 @@ function validate() {
     var regExp = null;
     var validated = true;
 
-    txtId.classList.remove('is-invalid');
-    txtName.classList.remove('is-invalid');
-    txtAddress.classList.remove('is-invalid');
+    txtId.removeClass('is-invalid');
+    txtName.removeClass('is-invalid')
+    txtAddress.removeClass('is-invalid')
 
-    if (txtAddress.value.trim().length < 3) {
-        txtAddress.classList.add('is-invalid');
+    if (txtAddress.val().trim().length < 3) {
+        txtAddress.addClass('is-invalid');
         txtAddress.select();
         validated = false;
     }
 
     regExp = /^[A-Za-z][A-Za-z .]{3,}$/;
-    if (!regExp.test(txtName.value)) {
-        txtName.classList.add('is-invalid');
+    if (!regExp.test(txtName.val())) {
+        txtName.addClass('is-invalid');
         txtName.select();
         validated = false;
     }
 
     regExp = /^C\d{3}$/;
-    if (!regExp.test(txtId.value)) {
-        txtId.classList.add('is-invalid');
-        document.getElementById('helper-txt-id').classList.remove('text-muted');
-        document.getElementById('helper-txt-id').classList.add('invalid-feedback');
+    if (!regExp.test(txtId.val())) {
+        txtId.addClass('is-invalid');
+        $('#helper-txt-id').removeClass('text-muted');
+        $('#helper-txt-id').addClass('invalid-feedback');
         txtId.select();
         validated = false;
     }
 
     /* Let's find whether duplicate ids are there */
     if (customers.findIndex(function (c) {
-        return c.id === txtId.value
+        return c.id === txtId.val()
     }) !== -1) {
         alert("Duplicate Customer IDs are not allowed");
-        txtId.classList.add('is-invalid');
-        document.getElementById('helper-txt-id').classList.remove('text-muted');
-        document.getElementById('helper-txt-id').classList.add('invalid-feedback');
+        txtId.addClass('is-invalid');
+        $('#helper-txt-id').removeClass('text-muted');
+        $('#helper-txt-id').addClass('invalid-feedback');
         txtId.select();
         validated = false;
     }
