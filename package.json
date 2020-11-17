@@ -1,8 +1,9 @@
 {
-  "name": "font-end-skills-test-1",
+  "name": "font-end-skills-test-2",
   "version": "1.0.0",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "bootstrap": "^4.5.3"
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1"
   }
 }
