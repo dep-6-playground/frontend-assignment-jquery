@@ -62,7 +62,8 @@ function init() {
 
 document.getElementById('btn-save').addEventListener('click', handleSave);
 document.addEventListener('click', handleClickEventDelegation);
-// txtId.addEventListener('input', handleInput);
+
+ //txtId.addEventListener('input', handleInput);
 //txtName.addEventListener('input', handleInput);
 //txtAddress.addEventListener('input', handleInput);
 
@@ -114,35 +115,34 @@ function handleSave(event) {
      */
 
     /* Let's check whether we want to save or update */
-  /*  if (!selectedCustomer) {
+    if (!selectedCustomer) {
 
-        /!* There is no selected customer which means we need to save *!/
+        /* There is no selected customer which means we need to save */
         customers.push({
-            id: txtId.value,
-            name: txtName.value,
-            address: txtAddress.value
+            id: txtId.val(),
+            name: txtName.val(),
+            address: txtAddress.val()
         });
 
-        /!* Let's initialize pagination *!/
+        /* Let's initialize pagination */
         initPagination();
         renderPage(Math.ceil(customers.length / pageSize));
         showOrHideTFoot();
 
-        /!* Let's ready for next entry *!/
-        txtId.value = '';
-        txtName.value = '';
-        txtAddress.value = '';
+        /* Let's ready for next entry */
+        txtId.val('');
+        txtName.val('');
+        txtAddress.val('');
         txtId.focus();
 
     } else {
 
-        /!* There is a selected customer which means we need to update *!/
-        selectedCustomer.name = txtName.value;
+        /* There is a selected customer which means we need to update */
+/*        selectedCustomer.name = txtName.value;
         selectedCustomer.address = txtAddress.value;
         selectedRow.cells[1].innerText = txtName.value;
-        selectedRow.cells[2].innerText = txtAddress.value;
+        selectedRow.cells[2].innerText = txtAddress.value;*/
     }
-*/
 }
 
 function initPagination() {
@@ -354,7 +354,7 @@ function handleDelete(event) {
     }
 }
 
-function showOrHideTFoot() {
+function showOrHideTFoot(){
     if (tblCustomers.tBodies.item(0).rows.length > 0) {
         document.querySelector("#tbl-customers tfoot").classList.add('d-none');
     } else {
@@ -363,7 +363,7 @@ function showOrHideTFoot() {
 }
 
 function handleInput(event) {
-    this.classList.remove('is-invalid');
+    $('this').removeClass('is-invalid');
 }
 
 function validate() {
